@@ -4,7 +4,7 @@
 
   tasks:
    - debug:
-       msg: "{{ node[inventory_hostname].ports }}"
+       msg: "net add bridge bridge {{ node[inventory_hostname].switching.bridge | join (" ") }}"
 
 #   - debug:
 #       msg: "{{ node[inventory_hostname].routing.ospf.neighbors }}"

@@ -12,12 +12,21 @@
         - add interface eth0 vrf mgmt
         - add hostname "{{ inventory_hostname }}"
 
-  - name: Deploy Interfaces
+  - name: Deploy Bond Interfaces
     nclu:
       commit: true
       description: "Deploy Interfaces"
       template: |
          add interface "{{ item }}"
+    with_items:
+      - "{{ node[inventory_hostname].ports }}"
+
+  - name: Deploy Interfaces
+    nclu:
+      commit: true
+      description: "Deploy Interfaces"
+      template: |
+          add interface "{{ item }}"
     with_items:
       - "{{ node[inventory_hostname].ports }}"
 

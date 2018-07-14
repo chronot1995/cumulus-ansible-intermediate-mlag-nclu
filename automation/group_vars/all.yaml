@@ -16,7 +16,11 @@ node:
     ports:
       - swp1
       - swp2
+      - bond01
     switching:
+      bridge:
+        - bond01
+        - peerlink
       interfaces:
         swp1:
           members:
