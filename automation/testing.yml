@@ -2,7 +2,6 @@
   hosts: servers
   become: yes
   gather_facts: yes
-
   tasks:
 
   - name: Copy Server LACP Interface Config
@@ -13,8 +12,8 @@
 
   - name: reboot
     command: /sbin/shutdown -r +1
-      async: 0
-      poll: 0
+    async: 0
+    poll: 0
     ignore_errors: true
 
   - name: Sleep for server to disconnect
