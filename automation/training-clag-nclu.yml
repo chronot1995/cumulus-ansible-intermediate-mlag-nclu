@@ -20,7 +20,7 @@
          add interface "{{ item }}"
     with_items:
       - "{{ node[inventory_hostname].ports }}"
-    when: item.key | regex_search('^bond')
+    when: item.value | regex_search('^bond')
 
   - name: Deploy Interfaces
     nclu:
