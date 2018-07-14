@@ -4,7 +4,7 @@
 
   tasks:
    - debug:
-       msg: "{{ node[inventory_hostname]["routing"]["svi"] }}"
+       msg: {{ node[inventory_hostname]["routing"]["svi"] }}
 
 #   - debug:
 #       msg: "{{ node[inventory_hostname].routing.ospf.neighbors }}"
@@ -12,7 +12,7 @@
 #   - debug:
 #       msg: "{{ node[inventory_hostname].routing.lo | regex_replace('/32')}}"
 
-   - debug:
-       msg: "{{ item["ip"] }}"
-     with_dict:
-       - "{{ node[inventory_hostname]["routing"]["svi"] }}"
+#   - debug:
+#       msg: "{{ item["ip"] }}"
+#     with_dict:
+#       - "{{ node[inventory_hostname]["routing"]["svi"] }}"
