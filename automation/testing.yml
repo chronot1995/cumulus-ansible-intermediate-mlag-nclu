@@ -1,0 +1,11 @@
+- name: Configure Server LACP Interfaces
+  hosts: servers
+  become: yes
+  gather_facts: yes
+  tasks:
+
+  - name: Copy Server LACP Interface Config
+    copy:
+      src: configurations/{{ansible_hostname}}/interfaces
+      dest: /etc/network/interfaces
+    register: reboot
