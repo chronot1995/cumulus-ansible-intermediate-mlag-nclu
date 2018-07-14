@@ -4,7 +4,7 @@
 
   tasks:
    - debug:
-       msg: "{{ node[inventory_hostname].mlag }}"
+       msg: "{{ node[inventory_hostname].routing.svi }}"
 
 #   - debug:
 #       msg: "{{ node[inventory_hostname].routing.ospf.neighbors }}"
