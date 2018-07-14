@@ -14,5 +14,5 @@
 
    - debug:
        msg: "{{ item.ip }}"
-     with_dict:
+     with_items:
        - "{{ node[inventory_hostname]['routing']['svi'] }}"
