@@ -36,12 +36,12 @@ node:
           internal:
             peers:
       svi:
-        - vlan100:
-            ip: 172.16.121.2/24
-            vlan: 100
-            vrrp:
-              - mac: "44:38:39:FF:00:01"
-              - ip: 172.16.121.1/24
+        vlan100:
+          ip: 172.16.121.2/24
+          vlan: 100
+          vrrp:
+            - mac: "44:38:39:FF:00:01"
+            - ip: 172.16.121.1/24
   switch02:
     mlag:
       address: 169.254.1.2/30
