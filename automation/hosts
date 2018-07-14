@@ -7,7 +7,7 @@
 switch01 ansible_host=192.168.200.1
 switch02 ansible_host=192.168.200.2
 
-[switches:all]
+[switches:children]
 switch01
 switch02
 
