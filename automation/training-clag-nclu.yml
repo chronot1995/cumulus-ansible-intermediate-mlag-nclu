@@ -30,7 +30,7 @@
           add interface "{{ item }}"
     with_items:
       - "{{ node[inventory_hostname].ports }}"
-    when: item.find("bond") == 1
+    when: item.find("bond") != 1
 
   - name: Deploy VLANs
     nclu:
@@ -46,12 +46,12 @@
       commit: true
       description: "Deploy Bridging configuration"
       commands:
-          - add bridge bridge "{{ node[inventory_hostname].switching.bridge | join (" ") }}"
+          - add bridge bridge ports "{{ node[inventory_hostname].switching.bridge | join (" ") }}"
 
-  - name: Deploy CLAG Unnumbered configuration
+  - name: Deploy CLAG configuration
     nclu:
         commit: true
-        description: "Deploy CLAG Unnumbered configuration"
+        description: "Deploy CLAG configuration"
         commands:
             - add interface peerlink.4094 ip address {{ node[inventory_hostname].mlag.address }}
             - add interface peerlink.4094 clag peer-ip {{ node[inventory_hostname].mlag.peerip }}
