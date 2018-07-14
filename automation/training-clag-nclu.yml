@@ -19,7 +19,8 @@
       template: |
          add interface "{{ item }}"
     with_items:
-      - "{{ node[inventory_hostname].ports = ^swp}}"
+      - "{{ node[inventory_hostname].ports }}"
+    when: ({{ node[inventory_hostname].ports }} = ^swp)
 
   - name: Deploy Interfaces
     nclu:
