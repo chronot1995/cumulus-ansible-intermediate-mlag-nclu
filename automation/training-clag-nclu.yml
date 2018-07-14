@@ -20,7 +20,7 @@
          add interface "{{ item }}"
     with_items:
       - "{{ node[inventory_hostname].ports }}"
-    when: item.value | regex_search('^bond')
+    when: item.find("bond") == 1
 
   - name: Deploy Interfaces
     nclu:
@@ -30,6 +30,7 @@
           add interface "{{ item }}"
     with_items:
       - "{{ node[inventory_hostname].ports }}"
+    when: item.find("bond") == 1
 
   - name: Deploy VLANs
     nclu:
