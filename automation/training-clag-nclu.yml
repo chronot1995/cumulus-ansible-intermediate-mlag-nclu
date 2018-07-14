@@ -1,5 +1,5 @@
-- name: Configure BGP Unnumbered Switches
-  hosts: all
+- name: Configure CLAG and VRR Switches
+  hosts: switches
   become: yes
   gather_facts: yes
   tasks:
@@ -28,7 +28,7 @@
       - "{{ node[inventory_hostname].ports }}"
     when: node[inventory_hostname].ports is defined
 
-  - name: Deploy BGP Unnumbered configuration
+  - name: Deploy CLAG Unnumbered configuration
     nclu:
         commit: true
         description: "Deploy BGP Unnumbered configuration"
@@ -50,3 +50,15 @@
 
   - name: Reload Interfaces
     command: ifreload -a
+
+- name: Configure Server LACP Interfaces
+  hosts: servers
+  become: yes
+  gather_facts: yes
+  tasks:
+
+  - name: Copy Server LACP Interface Config
+    copy:
+      src: configurations/{{ansible_hostname}}/interfaces
+      dest: /etc/network/interfaces
+    register: reboot
