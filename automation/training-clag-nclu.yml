@@ -20,7 +20,7 @@
          add interface "{{ item }}"
     with_items:
       - "{{ node[inventory_hostname].ports }}"
-    when: ({{ node[inventory_hostname].ports }} = ^swp)
+    when: ( {{ node[inventory_hostname].ports }} | search ("bond") )
 
   - name: Deploy Interfaces
     nclu:
