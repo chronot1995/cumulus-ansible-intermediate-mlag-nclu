@@ -17,12 +17,28 @@ node:
       - swp1
       - swp2
     switching:
-      bond01:
-        members:
-          - swp1
-        mode: access
-        vlans:
-          - 100
+      interfaces:
+        swp1:
+          members:
+          mode: access
+          vlans:
+            - 100
+        swp2:
+          members:
+          mode: trunk
+          vlans:
+        peerlink:
+          members:
+          mode:
+          vlans:
+        bond01:
+          members:
+            - swp1
+          mode: access
+          vlans:
+            - 100
+      vlans:
+        - 100
     routing:
       lo:
       ospf:
