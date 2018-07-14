@@ -26,11 +26,11 @@
         commit: true
         description: "Deploy CLAG Unnumbered configuration"
         commands:
-            - add interface peerlink.4094 ip address {{ node[inventory_hostname].mlag.address }}
-            - add interface peerlink.4094 clag peer-ip {{ node[inventory_hostname].mlag.peerip }}
-            - add interface peerlink.4094 clag backup-ip {{ node[inventory_hostname].mlag.backupip }} vrf mgmt
-            - add interface peerlink.4094 clag sys-mac {{ node[inventory_hostname].mlag.sysmac }}
-            - add interface peerlink.4094 clag priority {{ node[inventory_hostname].mlag.priority }}
+            - add bond peerlink.4094 ip address {{ node[inventory_hostname].mlag.address }}
+            - add bond peerlink.4094 clag peer-ip {{ node[inventory_hostname].mlag.peerip }}
+            - add bond peerlink.4094 clag backup-ip {{ node[inventory_hostname].mlag.backupip }} vrf mgmt
+            - add bond peerlink.4094 clag sys-mac {{ node[inventory_hostname].mlag.sysmac }}
+            - add bond peerlink.4094 clag priority {{ node[inventory_hostname].mlag.priority }}
 
   - name: Deploy VRR and SVI configuration
     nclu:
