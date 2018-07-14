@@ -19,7 +19,7 @@
       template: |
          add interface "{{ item }}"
     with_items:
-      - "{{ node[inventory_hostname].ports }}"
+      - "{{ node[inventory_hostname].ports = ^swp}}"
 
   - name: Deploy Interfaces
     nclu:
@@ -38,6 +38,13 @@
          add vlan "{{ item }}"
     with_items:
        - "{{ node[inventory_hostname].switching.vlans }}"
+
+  - name: Deploy Bridging configuration
+    nclu:
+      commit: true
+      description: "Deploy Bridging configuration"
+      commands:
+          - add bridge bridge "{{ node[inventory_hostname].switching.bridge | join (" ") }}"
 
   - name: Deploy CLAG Unnumbered configuration
     nclu:
