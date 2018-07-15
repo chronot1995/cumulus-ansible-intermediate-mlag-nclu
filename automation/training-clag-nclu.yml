@@ -12,25 +12,14 @@
         - add interface eth0 vrf mgmt
         - add hostname "{{ inventory_hostname }}"
 
-  - name: Deploy Bond Interfaces
+  - name: Deploy Interfaces
     nclu:
       commit: true
       description: "Deploy Interfaces"
       template: |
-         add interface "{{ item }}"
+          add interface "{{ item }}"
     with_items:
       - "{{ node[inventory_hostname].ports }}"
-    when: item.find("bond") == 1
-
-#  - name: Deploy Interfaces
-#    nclu:
-#      commit: true
-#      description: "Deploy Interfaces"
-#      template: |
-#          add interface "{{ item }}"
-#    with_items:
-#      - "{{ node[inventory_hostname].ports }}"
-#    when: item.find("bond") != 1
 
   - name: Deploy VLANs
     nclu:
@@ -41,23 +30,35 @@
     with_items:
        - "{{ node[inventory_hostname].switching.vlans }}"
 
+  - name: Deploy CLAG configuration
+    nclu:
+        commit: true
+        description: "Deploy CLAG configuration"
+        commands:
+            - add bond peerlink bond slaves {{ node[inventory_hostname].mlag.members | join (" ") }}
+            - add interface peerlink.4094 ip address {{ node[inventory_hostname].mlag.address }}
+            - add interface peerlink.4094 clag peer-ip {{ node[inventory_hostname].mlag.peerip }}
+            - add interface peerlink.4094 clag backup-ip {{ node[inventory_hostname].mlag.backupip }} vrf mgmt
+            - add interface peerlink.4094 clag sys-mac {{ node[inventory_hostname].mlag.sysmac }}
+            - add interface peerlink.4094 clag priority {{ node[inventory_hostname].mlag.priority }}
+
+  - name: Deploy MLAG Interfaces
+    nclu:
+      commit: true
+      description: "Deploy Interfaces"
+      template: |
+          add bond "{{ item }}" bond slaves ""{{ item.value.members | join (" ")}}"
+          add bond "{{ item }}" bond clag id "{{ item.value.clagid }}"
+          add bond "{{ item }}" bridge access "{{ item.value.vlans | join (" ") }}"
+    with_items:
+      - "{{ node[inventory_hostname].mlag.interfaces }}"
+
   - name: Deploy Bridging configuration
     nclu:
       commit: true
       description: "Deploy Bridging configuration"
       commands:
           - add bridge bridge ports "{{ node[inventory_hostname].switching.bridge | join (" ") }}"
-
-  - name: Deploy CLAG configuration
-    nclu:
-        commit: true
-        description: "Deploy CLAG configuration"
-        commands:
-            - add interface peerlink.4094 ip address {{ node[inventory_hostname].mlag.address }}
-            - add interface peerlink.4094 clag peer-ip {{ node[inventory_hostname].mlag.peerip }}
-            - add interface peerlink.4094 clag backup-ip {{ node[inventory_hostname].mlag.backupip }} vrf mgmt
-            - add interface peerlink.4094 clag sys-mac {{ node[inventory_hostname].mlag.sysmac }}
-            - add interface peerlink.4094 clag priority {{ node[inventory_hostname].mlag.priority }}
 
   - name: Deploy VRR and SVI configuration
     nclu:
