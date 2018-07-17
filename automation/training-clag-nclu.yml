@@ -54,9 +54,9 @@
       commit: true
       description: "Deploy MLAG Interfaces"
       template: |
-          add bond {{ item.value }} bond slaves {{ item.value.members }}
-          add bond {{ item.value }} bond clag id {{ item.value.clagid }}
-          add bond {{ item.value }} bridge access {{ item.value.vlans }}
+          add bond {{ item.key }} bond slaves {{ item.value.members | join (" ") }}
+          add bond {{ item.key }} bond clag id {{ item.value.clagid | join (" ") }}
+          add bond {{ item.key }} bridge access {{ item.value.vlans | join (" ") }}
     with_dict:
       - "{{ node[inventory_hostname].mlag.interfaces }}"
 
@@ -65,8 +65,8 @@
         commit: true
         description: "Deploy VRR and SVI configuration"
         template: |
-           add vlan {{ item.value.vlan }} ip address {{ item.value.ip }}
-           add vlan {{ item.value.vlan }} ip address-virtual {{ item.value.vrrp.mac }} {{ item.value.vrrp.ip }}
+           add vlan {{ item.value.vlan | join (" ") }} ip address {{ item.value.ip | join (" ") }}
+           add vlan {{ item.value.vlan | join (" ") }} ip address-virtual {{ item.value.vrrp.mac | join (" ") }} {{ item.value.vrrp.ip | join (" ") }}
     with_dict:
       - "{{ node[inventory_hostname].routing.svi }}"
 
