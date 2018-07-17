@@ -42,7 +42,7 @@
       commit: true
       description: "Deploy CLAG configuration"
       commands:
-        - add bond peerlink bond slaves {{ node[inventory_hostname].mlag.members }}
+        - add bond peerlink bond slaves {{ node[inventory_hostname].mlag.members | join (" ") }}
         - add interface peerlink.4094 ip address {{ node[inventory_hostname].mlag.address }}
         - add interface peerlink.4094 clag peer-ip {{ node[inventory_hostname].mlag.peerip }}
         - add interface peerlink.4094 clag backup-ip {{ node[inventory_hostname].mlag.backupip }} vrf mgmt
@@ -52,11 +52,11 @@
   - name: Deploy MLAG Interfaces
     nclu:
       commit: true
-      description: "Deploy Interfaces"
+      description: "Deploy MLAG Interfaces"
       template: |
-          add bond "{{ item }}" bond slaves ""{{ item.value.members | join (" ")}}"
-          add bond "{{ item }}" bond clag id "{{ item.value.clagid }}"
-          add bond "{{ item }}" bridge access "{{ item.value.vlan }}"
+          add bond {{ item }} bond slaves {{ item.value.members }}
+          add bond {{ item }} bond clag id {{ item.value.clagid }}
+          add bond {{ item }} bridge access {{ item.value.vlan }}
     with_items:
       - "{{ node[inventory_hostname].mlag.interfaces }}"
 
