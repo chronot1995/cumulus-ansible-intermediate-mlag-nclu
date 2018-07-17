@@ -57,7 +57,7 @@
           add bond {{ item }} bond slaves {{ item.value.members }}
           add bond {{ item }} bond clag id {{ item.value.clagid }}
           add bond {{ item }} bridge access {{ item.value.vlan }}
-    with_items:
+    with_dict:
       - "{{ node[inventory_hostname].mlag.interfaces }}"
 
   - name: Deploy VRR and SVI configuration
