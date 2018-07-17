@@ -4,10 +4,10 @@
 
   tasks:
    - debug:
-       msg: Ports {{ node[inventory_hostname].ports | flatten }}
+       msg: Ports {{ node[inventory_hostname].ports | unique }}
 
    - debug:
-       msg: add bond {{ item.key }} bond slaves {{ item.value.members | join (" ") }}
+       msg: add bond {{ item.key }} bond slaves {{ item.value.members | unique }}
      with_dict:
       - "{{ node[inventory_hostname].mlag.interfaces }}"
 
