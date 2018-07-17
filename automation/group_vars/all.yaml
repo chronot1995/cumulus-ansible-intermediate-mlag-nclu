@@ -13,6 +13,9 @@ node:
           clagid: 1
           members:
             - swp1
+          mode: access
+          vlans:
+            - 100
     overlay:
       anycastip:
       vxlan:
@@ -30,10 +33,6 @@ node:
         - peerlink
       interfaces:
         swp1:
-          mode: access
-          vlans:
-            - 100
-        bond01:
           mode: access
           vlans:
             - 100
