@@ -70,15 +70,5 @@
     with_dict:
       - "{{ node[inventory_hostname].routing.svi }}"
 
-#  - name: Deploy BGP Unnumbered Interfaces
-#    nclu:
-#        commit: true
-#        description: "Deploy BGP Unnumbered Interfaces"
-#        template: |
-#           add bgp neighbor {{ item }} remote-as external
-#    with_items:
-#      - "{{ node[inventory_hostname].routing.bgp.underlay.external.peers }}"
-#    when: node[inventory_hostname].routing.bgp.underlay.external.peers is defined
-
   - name: Reload Interfaces
     command: ifreload -a
