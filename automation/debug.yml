@@ -7,7 +7,7 @@
        msg: Ports {{ node[inventory_hostname].ports | join(" ") }}
 
    - debug:
-       msg: add bond {{ item.key }} bond slaves {{ item.value.members | regex_search('swp') }}
+       msg: add bond {{ item.key }} bond slaves {{ item.value.members | join("") }}
      with_dict:
       - "{{ node[inventory_hostname].mlag.interfaces }}"
 
