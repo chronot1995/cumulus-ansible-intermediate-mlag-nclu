@@ -7,7 +7,7 @@
        msg: Ports {{ node[inventory_hostname].ports}}
 
    - debug:
-       msg: add bond {{ item.key }} bond slaves {{ item.key.members.value }}
+       msg: add bond {{ item.key }} bond slaves {{ item.members.value }}
      with_dict:
       - "{{ node[inventory_hostname].mlag.interfaces }}"
 
