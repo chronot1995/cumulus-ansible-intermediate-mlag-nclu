@@ -8,7 +8,7 @@
 
    - debug:
        msg: add bond {{ item }} bond slaves {{ item.members }}
-     with_items:
+     with_dict:
       - "{{ node[inventory_hostname].mlag.interfaces }}"
 
 #   - debug:
