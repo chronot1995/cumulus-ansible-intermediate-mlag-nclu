@@ -54,21 +54,21 @@
       commit: true
       description: "Deploy MLAG Interfaces"
       template: |
-          add bond {{ item.value }} bond slaves {{ item.value.members }}
-          add bond {{ item.value }} bond clag id {{ item.value.clagid }}
-          add bond {{ item.value }} bridge access {{ item.value.vlans }}
+          add bond {{ item.value }} bond slaves {{ item.value.members | join("") }}
+          add bond {{ item.value }} bond clag id {{ item.value.clagid | join("") }}
+          add bond {{ item.value }} bridge access {{ item.value.vlans | join("") }}
     with_dict:
       - "{{ node[inventory_hostname].mlag.interfaces }}"
 
-  - name: Deploy VRR and SVI configuration
-    nclu:
-        commit: true
-        description: "Deploy VRR and SVI configuration"
-        template: |
-           add vlan {{ item.value.vlan }} ip address {{ item.value.ip }}
-           add vlan {{ item.value.vlan }} ip address-virtual {{ item.value.vrrp.mac }} {{ item.value.vrrp.ip }}
-    with_dict:
-      - "{{ node[inventory_hostname].routing.svi }}"
+#  - name: Deploy VRR and SVI configuration
+#    nclu:
+#        commit: true
+#        description: "Deploy VRR and SVI configuration"
+#        template: |
+#           add vlan {{ item.value.vlan }} ip address {{ item.value.ip }}
+#           add vlan {{ item.value.vlan }} ip address-virtual {{ item.value.vrrp.mac }} {{ item.value.vrrp.ip }}
+#    with_dict:
+#      - "{{ node[inventory_hostname].routing.svi }}"
 
   - name: Reload Interfaces
     command: ifreload -a
