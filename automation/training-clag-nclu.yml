@@ -32,14 +32,14 @@
 
   - name: Deploy Bridging configuration
     nclu:
-      commit: true
+      commit: false
       description: "Deploy Bridging configuration"
       commands:
         - add bridge bridge ports "{{ node[inventory_hostname].switching.bridge | join (" ") }}"
 
   - name: Deploy CLAG configuration
     nclu:
-      commit: true
+      commit: false
       description: "Deploy CLAG configuration"
       commands:
         - add bond peerlink bond slaves {{ node[inventory_hostname].mlag.members | join (" ") }}
