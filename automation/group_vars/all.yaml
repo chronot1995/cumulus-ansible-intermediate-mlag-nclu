@@ -30,7 +30,6 @@ node:
     switching:
       bridge:
         - bond01
-        - peerlink
       interfaces:
         swp1:
           mode: access
