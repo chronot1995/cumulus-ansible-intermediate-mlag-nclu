@@ -39,15 +39,15 @@
 
   - name: Deploy CLAG configuration
     nclu:
-        commit: true
-        description: "Deploy CLAG configuration"
-        commands:
-            - add bond peerlink bond slaves {{ node[inventory_hostname].mlag.members | join (" ") }}
-            - add interface peerlink.4094 ip address {{ node[inventory_hostname].mlag.address }}
-            - add interface peerlink.4094 clag peer-ip {{ node[inventory_hostname].mlag.peerip }}
-            - add interface peerlink.4094 clag backup-ip {{ node[inventory_hostname].mlag.backupip }} vrf mgmt
-            - add interface peerlink.4094 clag sys-mac {{ node[inventory_hostname].mlag.sysmac }}
-            - add interface peerlink.4094 clag priority {{ node[inventory_hostname].mlag.priority }}
+      commit: true
+      description: "Deploy CLAG configuration"
+      commands:
+        - add bond peerlink bond slaves {{ node[inventory_hostname].mlag.members | join (" ") }}
+        - add interface peerlink.4094 ip address {{ node[inventory_hostname].mlag.address }}
+        - add interface peerlink.4094 clag peer-ip {{ node[inventory_hostname].mlag.peerip }}
+        - add interface peerlink.4094 clag backup-ip {{ node[inventory_hostname].mlag.backupip }} vrf mgmt
+        - add interface peerlink.4094 clag sys-mac {{ node[inventory_hostname].mlag.sysmac }}
+        - add interface peerlink.4094 clag priority {{ node[inventory_hostname].mlag.priority }}
 
   - name: Deploy MLAG Interfaces
     nclu:
