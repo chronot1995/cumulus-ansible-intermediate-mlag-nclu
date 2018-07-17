@@ -21,7 +21,7 @@ REPONAME="ansible-training-clag-nclu"
 #Install Automation Tools
 puppet=0
 ansible=1
-ansible_version=2.5.5
+ansible_version=2.6.1
 
 #######################
 
