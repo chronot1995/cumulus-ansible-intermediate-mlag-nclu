@@ -26,7 +26,7 @@
       commit: true
       description: "Deploy VLANs"
       template: |
-         add vlan "{{ item | join (" ") }}"
+         add vlan "{{ item }}"
     with_items:
        - "{{ node[inventory_hostname].switching.vlans }}"
 
