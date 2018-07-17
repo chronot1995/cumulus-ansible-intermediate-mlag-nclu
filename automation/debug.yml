@@ -4,7 +4,7 @@
 
   tasks:
    - debug:
-       msg: Ports {{ node[inventory_hostname].ports | join (" ") }}
+       msg: Ports {{ node[inventory_hostname].ports | flatten }}
 
    - debug:
        msg: add bond {{ item.key }} bond slaves {{ item.value.members | join (" ") }}
