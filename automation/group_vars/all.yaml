@@ -10,11 +10,10 @@ node:
       priority: 100
       interfaces:
         bond01:
-          clagid: 1
+          clagid: "1"
           members: swp1
           mode: access
-          vlans:
-            - 100
+          vlans: "100"
     overlay:
       anycastip:
       vxlan:
