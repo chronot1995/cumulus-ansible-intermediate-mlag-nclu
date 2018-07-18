@@ -11,7 +11,7 @@ node:
       interfaces:
         bond01:
           clagid: "1"
-          members: swp2
+          members: swp1
           mode: access
           vlans: "100"
     overlay:
@@ -29,9 +29,9 @@ node:
       bridge:
         - bond01
       interfaces:
-        swp1:
-          mode: access
-          vlans: 100
+        switchport:
+          mode:
+          vlans:
       vlans:
         - 100
     routing:
@@ -65,8 +65,9 @@ node:
       interfaces:
         bond01:
           clagid: 1
-          members:
-            - swp1
+          members: swp1
+          mode: access
+          vlans: "100"
     overlay:
       anycastip:
       vxlan:
@@ -81,16 +82,10 @@ node:
     switching:
       bridge:
         - bond01
-        - peerlink
       interfaces:
-        swp1:
-          mode: access
+        switchport:
+          mode:
           vlans:
-            - 100
-        bond01:
-          mode: access
-          vlans:
-            - 100
       vlans:
         - 100
     routing:
