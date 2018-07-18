@@ -54,9 +54,9 @@
       commit: true
       description: "Deploy MLAG Interfaces"
       template: |
-          add bond {{ item.value }} bond slaves {{ item.value.members | join("") }}
-          add bond {{ item.value }} bond clag id {{ item.value.clagid | join("") }}
-          add bond {{ item.value }} bridge access {{ item.value.vlans | join("") }}
+          add bond {{ item.value }} bond slaves {{ item.value.members }}
+          add bond {{ item.value }} bond clag id {{ item.value.clagid }}
+          add bond {{ item.value }} bridge access {{ item.value.vlans }}
     with_dict:
       - "{{ node[inventory_hostname].mlag.interfaces }}"
 
