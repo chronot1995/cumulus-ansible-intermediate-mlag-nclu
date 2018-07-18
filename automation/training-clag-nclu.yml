@@ -60,15 +60,6 @@
     with_dict:
       - "{{ node[inventory_hostname].mlag.interfaces }}"
 
-  - name: Deploy Access Switching Interfaces
-    nclu:
-      commit: false
-      description: "Deploy Switching Interfaces"
-      template: |
-         add interface {{ item.key }} bridge {{ item.value.mode }} {{ item.value.vlans }}
-    with_dict:
-      - "{{ node[inventory_hostname].switching.interfaces }}"
-
   - name: Deploy VRR and SVI configuration
     nclu:
         commit: true
