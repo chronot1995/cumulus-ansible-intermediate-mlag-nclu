@@ -56,7 +56,7 @@
       template: |
          add bond {{ item.key }} bond slaves {{ item.value.members }}
          add bond {{ item.key }} clag id {{ item.value.clagid }}
-#         add bond {{ item }} bridge access {{ item.vlans }}
+         add bond {{ item.key }} bridge access {{ item.value.vlans }}
     with_dict:
       - "{{ node[inventory_hostname].mlag.interfaces }}"
 
