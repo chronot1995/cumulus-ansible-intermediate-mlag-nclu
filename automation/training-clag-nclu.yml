@@ -51,7 +51,7 @@
 
   - name: Deploy MLAG Interfaces
     nclu:
-      commit: true
+      commit: false
       description: "Deploy MLAG Interfaces"
       template: |
          add bond {{ item.key }} bond slaves {{ item.value.members }}
@@ -59,6 +59,15 @@
          add bond {{ item.key }} bridge access {{ item.value.vlans }}
     with_dict:
       - "{{ node[inventory_hostname].mlag.interfaces }}"
+
+  - name: Deploy Access Switching Interfaces
+    nclu:
+      commit: false
+      description: "Deploy Switching Interfaces"
+      template: |
+         add interface {{ item.key }} bridge {{ item.value.mode }} {{ item.value.vlans }}
+    with_dict:
+      - "{{ node[inventory_hostname].switching.interfaces }}"
 
   - name: Deploy VRR and SVI configuration
     nclu:

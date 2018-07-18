@@ -31,8 +31,7 @@ node:
       interfaces:
         swp1:
           mode: access
-          vlans:
-            - 100
+          vlans: 100
       vlans:
         - 100
     routing:
