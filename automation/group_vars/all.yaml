@@ -28,6 +28,7 @@ node:
     switching:
       bridge:
         - bond01
+        - peerlink
       interfaces:
         switchport:
           mode:
