@@ -35,7 +35,7 @@
       commit: false
       description: "Deploy Bridging configuration"
       commands:
-        - add bridge bridge ports "{{ node[inventory_hostname].switching.bridge | join (" ") }}"
+        - add bridge bridge ports "{{ node[inventory_hostname].switching.bridge | join (" ") }}" peerlink
 
   - name: Deploy CLAG configuration
     nclu:
