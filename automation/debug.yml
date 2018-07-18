@@ -3,11 +3,11 @@
   gather_facts: yes
 
   tasks:
-   - debug:
-       msg: Ports {{ node[inventory_hostname].ports | join(" ") }}
+#   - debug:
+#       msg: Ports {{ node[inventory_hostname].ports | join(" ") }}
 
    - debug:
-       msg: add bond {{ item.key }} bond slaves {{ item.value.ip }}
+       msg: add vlan {{ item.key }} ip address {{ item.value.ip }}
      with_dict:
       - "{{ node[inventory_hostname].routing.svi }}"
 
