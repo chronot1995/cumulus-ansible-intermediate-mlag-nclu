@@ -55,8 +55,8 @@
       description: "Deploy MLAG Interfaces"
       template: |
          add bond {{ item }} bond slaves {{ item.members }}
-         add bond {{ item }} bond clag id {{ item.clagid }}
-         add bond {{ item }} bridge access {{ item.vlans }}
+#         add bond {{ item }} bond clag id {{ item.clagid }}
+#         add bond {{ item }} bridge access {{ item.vlans }}
     with_dict:
       - "{{ node[inventory_hostname].mlag.interfaces }}"
 
