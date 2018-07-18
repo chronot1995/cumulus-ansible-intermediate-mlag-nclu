@@ -15,7 +15,7 @@ node:
             - swp1
           mode: access
           vlans:
-            - "100"
+            - 100
     overlay:
       anycastip:
       vxlan:
