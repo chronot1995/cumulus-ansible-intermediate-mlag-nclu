@@ -54,10 +54,10 @@
       commit: true
       description: "Deploy MLAG Interfaces"
       template: |
-          add bond {{ item.value }} bond slaves {{ item.value.members }}
-          add bond {{ item.value }} bond clag id {{ item.value.clagid }}
-          add bond {{ item.value }} bridge access {{ item.value.vlans }}
-    with_dict:
+          add bond {{ item }} bond slaves {{ item.members }}
+          add bond {{ item }} bond clag id {{ item.clagid }}
+          add bond {{ item }} bridge access {{ item.vlans }}
+    with_items:
       - "{{ node[inventory_hostname].mlag.interfaces }}"
 
 #  - name: Deploy VRR and SVI configuration
