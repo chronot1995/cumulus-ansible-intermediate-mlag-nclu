@@ -65,7 +65,7 @@
         commit: true
         description: "Deploy VRR and SVI configuration"
         template: |
-           add vlan {{ item.key }} ip address {{ item.value.ip }}
+           add vlan {{ item.value.vlan }} ip address {{ item.value.ip }}
 #           add vlan {{ item.key }} ip address-virtual {{ item.value.vrrp.mac }} {{ item.value.vrrp.ip }}
     with_dict:
       - "{{ node[inventory_hostname].routing.svi }}"
