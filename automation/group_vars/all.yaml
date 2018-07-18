@@ -11,7 +11,7 @@ node:
       interfaces:
         bond01:
           clagid: "1"
-          members: swp1
+          members: swp2
           mode: access
           vlans: "100"
     overlay:
