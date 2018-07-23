@@ -1,2 +1,2 @@
-# ansible-training-ospf-nclu
+# ansible-training-clag-nclu
 Two switches configured with OSPF using Cumulus' NCLU Ansible module

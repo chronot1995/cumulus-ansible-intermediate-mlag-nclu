@@ -15,8 +15,8 @@ echo " Detected vagrant user is: $username"
 #       KNOBS
 #######################
 
-REPOSITORY="https://github.com/CumulusNetworks/ansible-training-clag-nclu"
-REPONAME="ansible-training-clag-nclu"
+REPOSITORY="https://github.com/CumulusNetworks/int-ansible-training-clag-nclu"
+REPONAME="int-ansible-training-clag-nclu"
 
 #Install Automation Tools
 puppet=0
