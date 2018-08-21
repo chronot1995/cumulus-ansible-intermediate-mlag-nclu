@@ -23,6 +23,7 @@ node:
     ports:
       - swp1
       - swp2
+      - swp3
     lacp:
       interfaces:
         members:
@@ -79,6 +80,7 @@ node:
     ports:
       - swp1
       - swp2
+      - swp3
     lacp:
       interfaces:
         members:
