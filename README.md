@@ -88,7 +88,9 @@ Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Dow
           bond01   -                  1         -                      -
 ```
 
-One can see the various LACP interfaces:
+The most important link is the status of the "Backup IP." In the above, it is set to "active," which means that the two switches will form an LACP connection to the downstream server.
+
+One can see the various LACP interfaces and which bond / LACP member that they belong to:
 
 ```
 cumulus@switch01:mgmt-vrf:~$ net show interface bondmems
@@ -99,7 +101,7 @@ UP  swp2    1G        1500  LACP-UP  Master: peerlink(UP)
 UP  swp3    1G        1500  LACP-UP  Master: peerlink(UP)
 ```
 
-One can also view the MAC addresses of the two switches within the EVPN instance by running the following command:
+One can also see the bonds in a more concise output:
 
 ```
 cumulus@switch01:mgmt-vrf:~$ net show interface bonds
@@ -109,6 +111,8 @@ DN  bond01    N/A       1500  LACP    Bond Members: swp1(UP)
 UP  peerlink  2G        1500  LACP    Bond Members: swp2(UP), swp3(UP)
 ```
 
+There currently is no NCLU command to view the VRR interface. The easiest way is to check the "UP" state on the "-v" interface using Linux's "ip" command:
+
 ```
 cumulus@switch01:mgmt-vrf:~$ ip address show | grep vlan100
 40: vlan100@bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
@@ -116,6 +120,8 @@ cumulus@switch01:mgmt-vrf:~$ ip address show | grep vlan100
 41: vlan100-v0@vlan100: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
     inet 172.16.121.1/24 scope global vlan100-v0
 ```
+
+On the Linux server itself, one can view the status of the LACP bond on the "uplink" interface with the following command:
 
 ```
 cumulus@server01:~$ cat /proc/net/bonding/uplink | grep Status
