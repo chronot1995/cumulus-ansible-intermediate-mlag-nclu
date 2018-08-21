@@ -2,7 +2,7 @@
 # Created by Topology-Converter v4.6.8
 #    Template Revision: v4.6.8
 #    https://github.com/cumulusnetworks/topology_converter
-#    using topology data from: ansible-training-clag-nclu.dot
+#    using topology data from: int-ansible-training-clag-nclu.dot
 
 echo "################################################"
 echo "  Running Automatic Management Server Setup..."
@@ -50,6 +50,7 @@ install_ansible(){
 	sudo pip install setuptools --upgrade
 	sudo pip install ansible==$ansible_version --upgrade
 }
+
 
 ## MOTD
 echo " ### Overwriting MOTD ###"

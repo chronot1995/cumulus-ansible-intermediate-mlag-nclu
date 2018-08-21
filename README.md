@@ -57,8 +57,10 @@ This will bring run the automation script and configure the two switches with BG
 
 Helpful NCLU troubleshooting commands:
 
+- net show clag
+- net show interface bonds
+- net show interface bondmems
 - net show route
-- net show bgp summary
 - net show interface | grep -i UP
 - net show lldp
 
@@ -67,6 +69,7 @@ Helpful Linux troubleshooting commands:
 - ip route
 - ip link show
 - ip address <interface>
+- cat /proc/net/bonding/uplink
 
 The BGP Summary command will show if each switch has formed an IPv6 and an l2vpn neighbor relationship:
 
