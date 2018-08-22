@@ -18,6 +18,7 @@
       description: "Deploy Interfaces"
       template: |
           add interface "{{ item }}"
+          add interface "{{ item }}" post-up ip link set "{{ item }}" promisc on
     with_items:
       - "{{ node[inventory_hostname].ports }}"
 

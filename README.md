@@ -130,6 +130,36 @@ MII Status: up
 MII Status: up
 ```
 
+The Linux server will be able to ping the VRR gateway (.1), and each leaf IP (.2, .3):
+
+```
+cumulus@server01:~$ ping 172.16.121.1
+PING 172.16.121.1 (172.16.121.1) 56(84) bytes of data.
+64 bytes from 172.16.121.1: icmp_seq=1 ttl=64 time=2.10 ms
+^C
+--- 172.16.121.1 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.100/2.100/2.100/0.000 ms
+
+cumulus@server01:~$ ping 172.16.121.2
+PING 172.16.121.2 (172.16.121.2) 56(84) bytes of data.
+64 bytes from 172.16.121.2: icmp_seq=1 ttl=64 time=1.09 ms
+^C
+--- 172.16.121.2 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.095/1.095/1.095/0.000 ms
+
+cumulus@server01:~$ ping 172.16.121.3
+PING 172.16.121.3 (172.16.121.3) 56(84) bytes of data.
+64 bytes from 172.16.121.3: icmp_seq=1 ttl=64 time=1.02 ms
+64 bytes from 172.16.121.3: icmp_seq=2 ttl=64 time=1.08 ms
+^C
+--- 172.16.121.3 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 1.022/1.055/1.089/0.046 ms
+```
+
+
 
 ### Errata
 
