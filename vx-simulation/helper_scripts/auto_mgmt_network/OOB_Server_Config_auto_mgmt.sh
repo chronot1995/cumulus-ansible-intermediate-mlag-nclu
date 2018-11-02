@@ -21,7 +21,7 @@ REPONAME="int-ansible-training-clag-nclu"
 #Install Automation Tools
 puppet=0
 ansible=1
-ansible_version=2.6.3
+ansible_version=2.6.5
 
 #######################
 
@@ -50,7 +50,6 @@ install_ansible(){
 	sudo pip install setuptools --upgrade
 	sudo pip install ansible==$ansible_version --upgrade
 }
-
 
 ## MOTD
 echo " ### Overwriting MOTD ###"
