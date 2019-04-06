@@ -2,7 +2,7 @@
 
 ### UPDATES
 
-04/06/2019 - Upgraded to 3.7.4, Added MLAG Unnumbered 
+04/06/2019 - Upgraded to 3.7.4, Added MLAG Unnumbered, Updated to Ansible 2.7, replaced old "shutdown" tasks with "reboot" tasks. 
 
 ### Summary:
 
