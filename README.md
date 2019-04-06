@@ -6,7 +6,7 @@
 
 ### Summary:
 
-This is an Ansible demo which configures two Cumulus VX switches in a CLAG configuration with a Linux server. This demo will utilize the Ansible Cumulus NCLU module.
+This is an Ansible demo which configures two Cumulus VX switches in an MLAG configuration with a Linux server. This demo will utilize the Ansible Cumulus NCLU module.
 
 ### Network Diagram:
 
@@ -75,7 +75,7 @@ Helpful Linux troubleshooting commands:
 - ip address <interface>
 - cat /proc/net/bonding/uplink
 
-The CLAG status command will verify the CLAG peer status:
+The MLAG status command will verify the MLAG peer status:
 
 ```
 cumulus@switch01:mgmt-vrf:~$ net show clag status
