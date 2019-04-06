@@ -1,4 +1,4 @@
-- name: Configure CLAG and VRR Switches
+- name: Configure MLAG and VRR Switches
   hosts: switches
   become: yes
   gather_facts: yes
@@ -38,10 +38,10 @@
       commands:
         - add bridge bridge ports "{{ node[inventory_hostname].switching.bridge | join (",") }}"
 
-  - name: Deploy CLAG configuration
+  - name: Deploy MLAG configuration
     nclu:
       commit: false
-      description: "Deploy CLAG configuration"
+      description: "Deploy MLAG configuration"
       commands:
         - add bond peerlink bond slaves {{ node[inventory_hostname].mlag.members | join (",") }}
         - add interface peerlink.4094 clag peer-ip linklocal
