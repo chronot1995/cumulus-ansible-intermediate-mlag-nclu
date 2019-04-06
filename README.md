@@ -1,5 +1,9 @@
 ## int-ansible-training-clag-nclu
 
+### UPDATES
+
+04/06/2019 - Upgraded to 3.7.4, Added MLAG Unnumbered 
+
 ### Summary:
 
 This is an Ansible demo which configures two Cumulus VX switches in a CLAG configuration with a Linux server. This demo will utilize the Ansible Cumulus NCLU module.
