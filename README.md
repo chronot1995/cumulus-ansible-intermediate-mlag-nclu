@@ -2,6 +2,8 @@
 
 ### UPDATES
 
+04/17/2019 - Upgrade to 3.7.5 of CL and Ansible 2.7.10
+
 04/06/2019 - Upgraded to 3.7.4, Added MLAG Unnumbered, Updated to Ansible 2.7, replaced old "shutdown" tasks with "reboot" tasks.
 
 ### Summary:
