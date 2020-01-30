@@ -1,2 +1,2 @@
 #!/bin/bash
-ansible-playbook int-ansible-training-clag-nclu.yml
+ansible-playbook cumulus-ansible-intermediate-mlag-nclu.yml
