@@ -14,7 +14,7 @@ This is an Ansible demo which configures two Cumulus VX switches in an MLAG conf
 
 ### Network Diagram:
 
-![Network Diagram](https://github.com/chronot1995/int-ansible-training-clag-nclu/blob/master/documentation/int-ansible-training-clag-nclu.png)
+![Network Diagram](https://github.com/chronot1995/int-ansible-training-clag-nclu/blob/master/documentation/cumulus-ansible-intermediate-mlag-nclu.png)
 
 ### Install and Setup Virtualbox on Mac
 
