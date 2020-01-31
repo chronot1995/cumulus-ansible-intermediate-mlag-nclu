@@ -91,7 +91,7 @@ SCRIPT
 
 Vagrant.configure("2") do |config|
 
-  simid = 1580425228
+  simid = 1580426414
 
   config.vm.provider "virtualbox" do |v|
     v.gui=false
@@ -464,7 +464,7 @@ end
 
     device.vm.hostname = "server01"
 
-    device.vm.box = "generic/debian10"
+    device.vm.box = "generic/ubuntu1604"
     device.vm.provider "virtualbox" do |v|
       v.name = "#{simid}_server01"
       v.customize ["modifyvm", :id, '--audiocontroller', 'AC97', '--audio', 'Null']
@@ -495,6 +495,9 @@ end
 
     # Fixes "stdin: is not a tty" and "mesg: ttyname failed : Inappropriate ioctl for device"  messages --> https://github.com/mitchellh/vagrant/issues/1673
     device.vm.provision :shell , inline: "(sudo grep -q 'mesg n' /root/.profile 2>/dev/null && sudo sed -i '/mesg n/d' /root/.profile  2>/dev/null) || true;", privileged: false
+
+    # Shorten Boot Process - Applies to Ubuntu Only - remove \"Wait for Network\"
+    device.vm.provision :shell , inline: "sed -i 's/sleep [0-9]*/sleep 1/' /etc/init/failsafe.conf 2>/dev/null || true"
 
 
     # Run the Config specified in the Node Attributes
