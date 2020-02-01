@@ -58,7 +58,7 @@
 
   - name: Deploy MLAG Interfaces
     nclu:
-      commit: false
+      commit: true
       description: "Deploy MLAG Interfaces"
       template: |
          add bond {{ item.key }} bond slaves {{ item.value.members }}
